@@ -10,7 +10,7 @@
         </script>
         <script>
                 $(document).ready(function() {
-                    var jsonUrl = 'http://geodata.nationaalgeoregister.nl/ahn3/wfs?request=getFeature&service=WFS&typeName=ahn3_bladindex&version=2.0.0&outputFormat=application/json'
+                    var jsonUrl = 'https://geodata.nationaalgeoregister.nl/ahn3/wfs?service=WFS&request=getFeature&version=2.0.0&typeNames=ahn3_bladindex&outputFormat=application/json'
                     $.getJSON(jsonUrl, function (data) {
                         $.each(data.features, function (key,val) {
                             var bladnr = ""+val.properties.bladnr;
