@@ -18,7 +18,8 @@
                             $("#5mdsmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_5m_dsm/R5_"+bladnr+".ZIP>"+bladnr+"</a></li>"); 
                             $("#5mdtmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_5m_dtm/M5_"+bladnr+".ZIP>"+bladnr+"</a></li>");
                             $("#05mdsmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_05m_dsm/R_"+bladnr+".ZIP>"+bladnr+"</a></li>"); 
-                            $("#05mdtmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_05m_dtm/M_"+bladnr+".ZIP>"+bladnr+"</a></li>"); 
+                            $("#05mdtmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_05m_dtm/M_"+bladnr+".ZIP>"+bladnr+"</a></li>");
+							$("#lazlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_laz/C_"+bladnr+".LAZ>"+bladnr+"</a></li>"); 
                         });
                         $(".loader").hide();
                         $(".links").show();
@@ -31,27 +32,32 @@
         <hr>
         <h2>AHN3 download links menu</h2>
         <ul>
-            <li><a href="#5mdsm">AHN3 5M DSM download links</a></li>
-            <li><a href="#5mdtm">AHN3 5M DTM download links</a></li>
-            <li><a href="#05mdsm">AHN3 0.5M DSM download links</a></li>
-            <li><a href="#05mdtm">AHN3 0.5M DTM download links</a></li>
+            <li><a href="#5mdsm">AHN3 5M DSM downloadlinks</a></li>
+            <li><a href="#5mdtm">AHN3 5M DTM downloadlinks</a></li>
+            <li><a href="#05mdsm">AHN3 0.5M DSM downloadlinks</a></li>
+            <li><a href="#05mdtm">AHN3 0.5M DTM downloadlinks</a></li>
+			<li><a href="#laz">AHN3 pointcloud/laz downloadlinks</a></li>
         </ul>
         <hr>
-        <h2 id="5mdsm">AHN3 5M DSM download links</h2>
+        <h2 id="5mdsm">AHN3 5M DSM downloadlinks</h2>
         <div class="loader">Loading...</div>
         <ul class="links" id="5mdsmlinks" style="display:none;"></ul>
         <hr>
-        <h2 id="5mdtm">AHN3 5M DTM download links</h2>
+        <h2 id="5mdtm">AHN3 5M DTM downloadlinks</h2>
         <div class="loader">Loading...</div>
         <ul class="links" id="5mdtmlinks" style="display:none;"></ul>
         <hr>
-        <h2 id="05mdsm">AHN3 0.5M DSM download links</h2>
+        <h2 id="05mdsm">AHN3 0.5M DSM downloadlinks</h2>
         <div class="loader">Loading...</div>
         <ul class="links" id="05mdsmlinks" style="display:none;"></ul>
         <hr>
-        <h2 id="05mdtm">AHN3 0.5M DTM download links</h2>
+        <h2 id="05mdtm">AHN3 0.5M DTM downloadlinks</h2>
         <div class="loader">Loading...</div>
         <ul class="links" id="05mdtmlinks" style="display:none;"></ul>
+        <hr>
+		<h2 id="laz">AHN3 pointcloud/laz downloadlinks</h2>
+        <div class="loader">Loading...</div>
+        <ul class="links" id="lazlinks" style="display:none;"></ul>
         <hr>
     </body>
 </html>
