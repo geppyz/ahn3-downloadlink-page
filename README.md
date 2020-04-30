@@ -1,5 +1,6 @@
 # ahn3-downloadlink-page
-A very basic page that generates AHN3 download links
+A very basic page that generates AHN3 download links.
+Live deployment can be opened here: https://geppyz.github.io/ahn3-downloadlink-page/
 
 ### Info
 Uses the AHN3 WFS bladindex endpoint from PDOK to search for active tiles to download.
