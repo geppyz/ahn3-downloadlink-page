@@ -1,78 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>PDOK - AHN3 Download Links Generated from WFS</title>
-        <script
-			src="https://code.jquery.com/jquery-3.4.1.min.js"
-			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			crossorigin="anonymous">
-        </script>
-        <script>
-                $(document).ready(function() {
-                    var jsonUrl = 'https://geodata.nationaalgeoregister.nl/ahn3/wfs?service=WFS&request=getFeature&version=2.0.0&typeNames=ahn3_bladindex&outputFormat=application/json'
-                    $.getJSON(jsonUrl, function (data) {
-                        $.each(data.features, function (key,val) {
-                            var bladnr = ""+val.properties.bladnr;
-                            bladnr = bladnr.toUpperCase();
-                            $("#5mdsmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_5m_dsm/R5_"+bladnr+".ZIP class=\"link\">"+bladnr+"</a></li>"); 
-                            $("#5mdtmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_5m_dtm/M5_"+bladnr+".ZIP class=\"link\">"+bladnr+"</a></li>");
-                            $("#05mdsmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_05m_dsm/R_"+bladnr+".ZIP class=\"link\">"+bladnr+"</a></li>"); 
-                            $("#05mdtmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_05m_dtm/M_"+bladnr+".ZIP class=\"link\">"+bladnr+"</a></li>");
-							$("#lazlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_laz/C_"+bladnr+".LAZ class=\"link\">"+bladnr+"</a></li>"); 
-                        });
-                        $(".loader").hide();
-                        $(".links").show();
-						$(".backtomenu").show();
-                    });
+
+<head>
+    <meta charset="UTF-8">
+    <title>PDOK - AHN3 Download Links Generated from WFS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            var jsonUrl = 'https://geodata.nationaalgeoregister.nl/ahn3/wfs?service=WFS&request=getFeature&version=2.0.0&typeNames=ahn3_bladindex&outputFormat=application/json'
+            var numberOf5mdsm = 0;
+            var numberOf5mdtm = 0;
+            var numberOf05mdsm = 0;
+            var numberOf05mdtm = 0;
+            var numberOfLaz = 0;
+            $.getJSON(jsonUrl, function (data) {
+                console.log(data);
+                $.each(data.features, function (key, val) {
+                    var bladnr = "" + val.properties.bladnr;
+                    bladnr = bladnr.toUpperCase();
+                    if (val.properties.has_data_5m_dsm == true) {
+                        $("#5mdsmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_5m_dsm/R5_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
+                        numberOf5mdsm++;
+                    }
+                    if (val.properties.has_data_5m_dtm == true) {
+                        $("#5mdtmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_5m_dtm/M5_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
+                        numberOf5mdtm++;
+                    }
+                    if (val.properties.has_data_05m_dsm == true) {
+                        $("#05mdsmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_05m_dsm/R_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
+                        numberOf05mdsm++;
+                    }
+                    if (val.properties.has_data_05m_dtm == true) {
+                        $("#05mdtmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_05m_dtm/M_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
+                        numberOf05mdtm++;
+                    }
+                    if (val.properties.has_data_laz == true) {
+                        $("#lazlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_laz/C_" + bladnr + ".LAZ class=\"link\">" + bladnr + "</a></li>");
+                        numberOfLaz++;
+                    }
                 });
-        </script>
-		<style>
-			.links {display:none;}
-			.backtomenu {display:none;}
-		</style>
-    </head>
-    <body>
-        <h1>AHN3 download links generator</h1>
-        <hr>
-        <h2 id="menu">AHN3 download links menu</h2>
-        <ul>
-            <li><a href="#5mdsm">AHN3 5M DSM downloadlinks</a></li>
-            <li><a href="#5mdtm">AHN3 5M DTM downloadlinks</a></li>
-            <li><a href="#05mdsm">AHN3 0.5M DSM downloadlinks</a></li>
-            <li><a href="#05mdtm">AHN3 0.5M DTM downloadlinks</a></li>
-			<li><a href="#laz">AHN3 pointcloud/laz downloadlinks</a></li>
-        </ul>
-        <hr>
-        <h2 id="5mdsm">AHN3 5M DSM downloadlinks</h2>
-        <div class="loader">Loading...</div>
-        <ul class="links" id="5mdsmlinks"></ul>
-		<br>
-		<a href="#menu" class="backtomenu">Back to menu</a>
-        <hr>
-        <h2 id="5mdtm">AHN3 5M DTM downloadlinks</h2>
-        <div class="loader">Loading...</div>
-        <ul class="links" id="5mdtmlinks"></ul>
-		<br>
-		<a href="#menu" class="backtomenu">Back to menu</a>
-        <hr>
-        <h2 id="05mdsm">AHN3 0.5M DSM downloadlinks</h2>
-        <div class="loader">Loading...</div>
-        <ul class="links" id="05mdsmlinks"></ul>
-		<br>
-		<a href="#menu" class="backtomenu">Back to menu</a>
-        <hr>
-        <h2 id="05mdtm">AHN3 0.5M DTM downloadlinks</h2>
-        <div class="loader">Loading...</div>
-        <ul class="links" id="05mdtmlinks"></ul>
-		<br>
-		<a href="#menu" class="backtomenu">Back to menu</a>
-        <hr>
-		<h2 id="laz">AHN3 pointcloud/laz downloadlinks</h2>
-        <div class="loader">Loading...</div>
-        <ul class="links" id="lazlinks"></ul>
-		<br>
-		<a href="#menu" class="backtomenu">Back to menu</a>
-        <hr>
-    </body>
+                $("#5mdsmcount").append(numberOf5mdsm);
+                $("#5mdtmcount").append(numberOf5mdtm);
+                $("#05mdsmcount").append(numberOf05mdsm);
+                $("#05mdtmcount").append(numberOf05mdtm);
+                $("#lazcount").append(numberOfLaz);
+                $(".loader").hide();
+                $(".counter").show();
+                $(".links").show();
+                $(".backtomenu").show();
+            });
+        });
+    </script>
+    <style>
+        .links {
+            display: none;
+        }
+
+        .counter {
+            display: none;
+        }
+
+        .backtomenu {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>AHN3 download links generator</h1>
+    <hr>
+    <h2 id="menu">AHN3 download links menu</h2>
+    <ul>
+        <li><a href="#5mdsm">AHN3 5M DSM downloadlinks</a></li>
+        <li><a href="#5mdtm">AHN3 5M DTM downloadlinks</a></li>
+        <li><a href="#05mdsm">AHN3 0.5M DSM downloadlinks</a></li>
+        <li><a href="#05mdtm">AHN3 0.5M DTM downloadlinks</a></li>
+        <li><a href="#laz">AHN3 pointcloud/laz downloadlinks</a></li>
+    </ul>
+    <hr>
+    <h2 id="5mdsm">AHN3 5M DSM downloadlinks</h2>
+    <div class="loader">Loading...</div>
+    <h4 id="5mdsmcount" class="counter">Number of links: </h4>
+    <ul class="links" id="5mdsmlinks"></ul>
+    <br>
+    <a href="#menu" class="backtomenu">Back to menu</a>
+    <hr>
+    <h2 id="5mdtm">AHN3 5M DTM downloadlinks</h2>
+    <div class="loader">Loading...</div>
+    <h4 id="5mdtmcount" class="counter">Number of links: </h4>
+    <ul class="links" id="5mdtmlinks"></ul>
+    <br>
+    <a href="#menu" class="backtomenu">Back to menu</a>
+    <hr>
+    <h2 id="05mdsm">AHN3 0.5M DSM downloadlinks</h2>
+    <div class="loader">Loading...</div>
+    <h4 id="05mdsmcount" class="counter">Number of links: </h4>
+    <ul class="links" id="05mdsmlinks"></ul>
+    <br>
+    <a href="#menu" class="backtomenu">Back to menu</a>
+    <hr>
+    <h2 id="05mdtm">AHN3 0.5M DTM downloadlinks</h2>
+    <div class="loader">Loading...</div>
+    <h4 id="05mdtmcount" class="counter">Number of links: </h4>
+    <ul class="links" id="05mdtmlinks"></ul>
+    <br>
+    <a href="#menu" class="backtomenu">Back to menu</a>
+    <hr>
+    <h2 id="laz">AHN3 pointcloud/laz downloadlinks</h2>
+    <div class="loader">Loading...</div>
+    <h4 id="lazcount" class="counter">Number of links: </h4>
+    <ul class="links" id="lazlinks"></ul>
+    <br>
+    <a href="#menu" class="backtomenu">Back to menu</a>
+    <hr>
+</body>
+
 </html>
