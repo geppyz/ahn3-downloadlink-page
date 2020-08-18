@@ -11,7 +11,7 @@ The following versions are currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-If you find a vunerability in this project, please create a issue on Github and if possible include the following information:
-- Name and version of library that as a vunerability.
-- Code in this project that is a vunerability (line numbers, example).
+If you find a vulnerability in this project, please create a issue on Github and if possible include the following information:
+- Name and version of library that as a vulnerability.
+- Code in this project that is a vulnerability (line numbers, example).
 - CVE link if available.
