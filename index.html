@@ -6,11 +6,12 @@
     <title>PDOK - AHN3 Download Links Generated from WFS</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
-            var jsonUrl = 'https://geodata.nationaalgeoregister.nl/ahn3/wfs?service=WFS&request=getFeature&version=2.0.0&typeNames=ahn3_bladindex&outputFormat=application/json'
+            var jsonUrl = 'https://service.pdok.nl/rws/ahn3/wfs/v1_0?service=WFS&request=getFeature&version=2.0.0&typeNames=ahn3_bladindex&outputFormat=application/json'
             var numberOf5mdsm = 0;
             var numberOf5mdtm = 0;
             var numberOf05mdsm = 0;
@@ -22,23 +23,23 @@
                     var bladnr = "" + val.properties.bladnr;
                     bladnr = bladnr.toUpperCase();
                     if (val.properties.has_data_5m_dsm == true) {
-                        $("#5mdsmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_5m_dsm/R5_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
+                        $("#5mdsmlinks").append("<li><a href=https://download.pdok.nl/rws/ahn3/v1_0/5m_dsm/R5_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
                         numberOf5mdsm++;
                     }
                     if (val.properties.has_data_5m_dtm == true) {
-                        $("#5mdtmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_5m_dtm/M5_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
+                        $("#5mdtmlinks").append("<li><a href=https://download.pdok.nl/rws/ahn3/v1_0/5m_dtm/M5_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
                         numberOf5mdtm++;
                     }
                     if (val.properties.has_data_05m_dsm == true) {
-                        $("#05mdsmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_05m_dsm/R_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
+                        $("#05mdsmlinks").append("<li><a href=https://download.pdok.nl/rws/ahn3/v1_0/05m_dsm/R_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
                         numberOf05mdsm++;
                     }
                     if (val.properties.has_data_05m_dtm == true) {
-                        $("#05mdtmlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_05m_dtm/M_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
+                        $("#05mdtmlinks").append("<li><a href=https://download.pdok.nl/rws/ahn3/v1_0/05m_dtm/M_" + bladnr + ".ZIP class=\"link\">" + bladnr + "</a></li>");
                         numberOf05mdtm++;
                     }
                     if (val.properties.has_data_laz == true) {
-                        $("#lazlinks").append("<li><a href=https://geodata.nationaalgeoregister.nl/ahn3/extract/ahn3_laz/C_" + bladnr + ".LAZ class=\"link\">" + bladnr + "</a></li>");
+                        $("#lazlinks").append("<li><a href=https://download.pdok.nl/rws/ahn3/v1_0/laz/C_" + bladnr + ".LAZ class=\"link\">" + bladnr + "</a></li>");
                         numberOfLaz++;
                     }
                 });
